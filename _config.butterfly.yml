@@ -14,7 +14,6 @@ menu:
 # ============================================================
 index_img: /images/banner/index.jpg
 default_top_img: /images/banner/default.jpg
-index_site_info_top: true
 
 subtitle:
   enable: true
