@@ -7,6 +7,8 @@ tags: []
 description: ""    # SEO 描述，50-160 字，用于首页摘要和搜索引擎
 keywords: ""       # SEO 关键词，逗号分隔
 cover:             # 文章封面图，如 /images/cover/xxx.png（无图则留空）
+difficulty: ""     # 难度：Easy / Medium / Hard（显示于文章 Security Header）
+research_time: ""  # 研究/完成时间，如 2026-08
 comments: true
 toc: true
 mathjax: false

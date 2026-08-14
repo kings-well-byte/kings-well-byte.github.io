@@ -17,7 +17,7 @@ menu:
   首页: / || fas fa-home
   Research: /research/ || fas fa-flask
   CTF: /ctf/ || fas fa-flag
-  Writeups: /categories/CTF-Writeup/ || fas fa-pen-nib
+  Knowledge: /knowledge/ || fas fa-book
   Projects: /projects/ || fas fa-code-branch
   Tools: /tools/ || fas fa-wrench
   关于: /about/ || fas fa-user
@@ -577,10 +577,22 @@ css_prefix: true
 
 inject:
   head:
+    - <meta name="theme-color" content="#05070D">
     - <link rel="preconnect" href="https://cdn.jsdelivr.net">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.css">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.css">
     - <link rel="stylesheet" href="/css/lab.css">
+    - <link rel="stylesheet" href="/css/lab-v11.css">
+    - <meta property="og:image" content="https://kings-well-byte.github.io/img/butterfly-icon.png">
+    - <meta name="twitter:card" content="summary">
+    - <meta name="twitter:title" content="Kings-Well Security Lab">
+    - <meta name="twitter:description" content="Cyber Security Research Lab — Web Security · CTF · AI Security">
+    - <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"WebSite","name":"Kings-Well Security Lab","url":"https://kings-well-byte.github.io","description":"Cyber Security Research Lab — Web Security, CTF, AI Security, Vulnerability Research"}
+      </script>
+    - <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"Person","name":"kings-well-byte","url":"https://kings-well-byte.github.io","sameAs":["https://github.com/kings-well-byte"],"jobTitle":"Cyber Security Researcher in Training","knowsAbout":["Web Security","CTF","PHP Source Code Audit","AI Security","Vulnerability Research"]}
+      </script>
   bottom:
     - <script src="/js/lab.js"></script>
 

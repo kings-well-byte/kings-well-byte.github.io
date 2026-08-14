@@ -3,8 +3,8 @@
 # ============================================================
 title: "Kings' Security Blog"
 subtitle: "Web Security Research & CTF Writeups"
-description: "专注于Web安全、CTF竞赛、PHP源码审计的技术博客"
-keywords: "Web安全, CTF, 渗透测试, 漏洞分析, 网络安全"
+description: "Kings-Well Security Lab — 网络安全研究个人实验室。Web 安全、CTF 竞赛、PHP 源码审计、AI 安全方向的学习与研究记录。"
+keywords: "Cyber Security, Web Security, CTF, AI Security, Vulnerability Research, PHP Audit, 网络安全, Web安全, CTF竞赛, 渗透测试, 漏洞分析"
 author: kings-well-byte
 language: zh-CN
 timezone: Asia/Shanghai
@@ -50,7 +50,7 @@ future: true
 
 highlight:
   enable: false
-  line_number: false
+  line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: false

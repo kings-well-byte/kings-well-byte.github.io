@@ -18,21 +18,29 @@ const LAB_CONFIG = {
     speed: 38,          // 每字符毫秒
     lineDelay: 380,     // 行间停顿
   },
+  status: {
+    online: 'ONLINE',
+    environment: 'Linux',
+    researchMode: 'ACTIVE',
+    knowledgeBase: 'Growing',
+    lastUpdate: '2026-08',
+  },
   profile: {
-    role: 'Security Researcher',
-    focus: ['Web Security', 'AI Security', 'CTF', 'Vulnerability Research'],
-    status: 'Learning',
-    stats: [
-      { num: '120+', label: 'CTF Solved' },
-      { num: '05', label: 'Projects' },
-      { num: '100+', label: 'Articles' },
+    role: 'Cyber Security Researcher in Training',
+    roleCN: '网络安全研究方向学习者',
+    focus: ['Web Security', 'AI Security', 'Vulnerability Research'],
+    status: 'Learning & Research',
+    journey: [
+      { label: 'CTF Training', value: 'Active' },
+      { label: 'Projects', value: '2 Active' },
+      { label: 'Articles', value: 'Continuous Writing' },
     ],
   },
   research: [
-    { name: 'Web Security',   pct: 90, tags: ['SQLi', 'XSS', 'RCE', 'SSRF'], accent: '' },
-    { name: 'CTF',            pct: 80, tags: ['Web', 'Crypto', 'Misc'], accent: 'blue' },
-    { name: 'AI Security',    pct: 70, tags: ['LLM', 'Prompt Injection', 'Model Safety'], accent: 'purple' },
-    { name: 'Tools',          pct: 85, tags: ['Burp', 'Nmap', 'Python', 'Linux'], accent: 'red' },
+    { name: 'Web Security', level: 'Research', tags: ['SQLi', 'XSS', 'RCE', 'SSRF'], accent: '' },
+    { name: 'CTF',          level: 'Training', tags: ['Web', 'PHP', 'Misc'], accent: 'blue' },
+    { name: 'AI Security',  level: 'Learning', tags: ['LLM', 'Prompt Injection', 'Model Safety'], accent: 'purple' },
+    { name: 'Tools',        level: 'Daily Use', tags: ['Burp', 'Linux', 'Python'], accent: 'red' },
   ],
   projects: [
     {
@@ -52,18 +60,26 @@ const LAB_CONFIG = {
       linkText: 'GitHub →',
     },
   ],
-  ctf: [
-    { name: 'Solved', num: '120+' },
-    { name: 'Web', num: '85' },
-    { name: 'Crypto', num: '20' },
-    { name: 'Misc', num: '15' },
-  ],
+  ctf: {
+    path: [
+      { cat: 'Web Security', items: ['HTTP Basics', 'PHP Security', 'SQL Injection', 'XSS', 'RCE', 'Command Injection'] },
+      { cat: 'Tools', items: ['Burp Suite', 'Linux', 'Python'] },
+    ],
+    journey: [
+      { year: '2026', title: 'Web Security Start', items: ['Started Web Security learning', 'PHP vulnerability analysis', 'CTFshow practice', 'Competition preparation'] },
+    ],
+  },
   github: {
     name: 'kings-well-byte',
     desc: 'Web Security · CTF · PHP Audit',
     url: 'https://github.com/kings-well-byte',
     avatar: 'https://github.com/kings-well-byte.png',
   },
+  archive: [
+    { year: '2026', items: ['Security Learning'] },
+    { year: '2027', items: ['Competition'] },
+    { year: '2028', items: ['Research'] },
+  ],
 };
 
 (function () {
@@ -141,16 +157,16 @@ const LAB_CONFIG = {
 
   function buildProfile() {
     const m = el('<section class="lab-module lab-profile-wrap"></section>');
-    m.appendChild(moduleTitle('Security Profile'));
+    m.appendChild(moduleTitle('Security Identity'));
     const wrap = el('<div class="lab-profile"></div>');
     const main = el(`<div class="lab-profile-main">
-      <div class="lab-profile-row"><span class="k">Role</span><span class="v">${esc(LAB_CONFIG.profile.role)}</span></div>
+      <div class="lab-profile-row"><span class="k">Role</span><span class="v">${esc(LAB_CONFIG.profile.role)} <span class="lab-profile-cn">(${esc(LAB_CONFIG.profile.roleCN)})</span></span></div>
       <div class="lab-profile-row"><span class="k">Focus</span><span class="v">${LAB_CONFIG.profile.focus.map(esc).join(' · ')}</span></div>
       <div class="lab-profile-row"><span class="k">Status</span><span class="v lab-profile-status"><span class="dot"></span> ${esc(LAB_CONFIG.profile.status)}</span></div>
     </div>`);
     wrap.appendChild(main);
-    LAB_CONFIG.profile.stats.forEach(s => {
-      wrap.appendChild(el(`<div class="lab-stat"><div class="num">${esc(s.num)}</div><div class="label">${esc(s.label)}</div></div>`));
+    LAB_CONFIG.profile.journey.forEach(s => {
+      wrap.appendChild(el(`<div class="lab-stat"><div class="num" style="font-size:16px">${esc(s.value)}</div><div class="label">${esc(s.label)}</div></div>`));
     });
     m.appendChild(wrap);
     return m;
@@ -162,9 +178,8 @@ const LAB_CONFIG = {
     const grid = el('<div class="lab-grid"></div>');
     LAB_CONFIG.research.forEach(r => {
       const card = el(`<div class="lab-card" data-accent="${r.accent}">
-        <div class="card-head"><span class="card-name">${esc(r.name)}</span><span class="card-pct" data-pct="${r.pct}">0%</span></div>
+        <div class="card-head"><span class="card-name">${esc(r.name)}</span><span class="card-level">${esc(r.level)}</span></div>
         <div class="card-tags">${r.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div>
-        <div class="lab-bar"><div class="fill" data-w="${r.pct}"></div></div>
       </div>`);
       grid.appendChild(card);
     });
@@ -191,12 +206,56 @@ const LAB_CONFIG = {
 
   function buildCtf() {
     const m = el('<section class="lab-module"></section>');
-    m.appendChild(moduleTitle('CTF Arena'));
-    const main = el('<div class="lab-ctf-main"></div>');
-    LAB_CONFIG.ctf.forEach(c => {
-      main.appendChild(el(`<div class="lab-ctf-cat"><div class="cat-name">${esc(c.name)}</div><div class="cat-num">${esc(c.num)}</div></div>`));
+    m.appendChild(moduleTitle('Security Learning Path'));
+    const wrap = el('<div class="lab-path"></div>');
+    LAB_CONFIG.ctf.path.forEach(p => {
+      const col = el(`<div class="lab-path-col"><div class="path-cat">${esc(p.cat)}</div><ul>${p.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>`);
+      wrap.appendChild(col);
     });
-    m.appendChild(main);
+    m.appendChild(wrap);
+    return m;
+  }
+
+  function buildCtfJourney() {
+    const m = el('<section class="lab-module"></section>');
+    m.appendChild(moduleTitle('CTF Journey'));
+    const tl = el('<div class="lab-timeline"></div>');
+    LAB_CONFIG.ctf.journey.forEach(j => {
+      const node = el(`<div class="tl-node">
+        <div class="tl-year">${esc(j.year)}</div>
+        <div class="tl-title">${esc(j.title)}</div>
+        <ul class="tl-items">${j.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+      </div>`);
+      tl.appendChild(node);
+    });
+    m.appendChild(tl);
+    return m;
+  }
+
+  function buildStatusPanel() {
+    const s = LAB_CONFIG.status;
+    return el(`<aside class="lab-status-panel">
+      <div class="sp-head"><span class="sp-dot"></span> SECURITY CORE STATUS</div>
+      <div class="sp-row"><span class="k">Status</span><span class="v sp-online">● ${esc(s.online)}</span></div>
+      <div class="sp-row"><span class="k">Environment</span><span class="v">${esc(s.environment)}</span></div>
+      <div class="sp-row"><span class="k">Research Mode</span><span class="v">${esc(s.researchMode)}</span></div>
+      <div class="sp-row"><span class="k">Knowledge Base</span><span class="v">${esc(s.knowledgeBase)}</span></div>
+      <div class="sp-row"><span class="k">Last Update</span><span class="v">${esc(s.lastUpdate)}</span></div>
+    </aside>`);
+  }
+
+  function buildArchive() {
+    const m = el('<section class="lab-module"></section>');
+    m.appendChild(moduleTitle('Security Archive'));
+    const tl = el('<div class="lab-timeline lab-archive"></div>');
+    LAB_CONFIG.archive.forEach(a => {
+      const node = el(`<div class="tl-node">
+        <div class="tl-year">${esc(a.year)}</div>
+        <ul class="tl-items">${a.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+      </div>`);
+      tl.appendChild(node);
+    });
+    m.appendChild(tl);
     return m;
   }
 
@@ -214,32 +273,62 @@ const LAB_CONFIG = {
     return m;
   }
 
-  /* ---------- 进度条动画 ---------- */
-  function animateBars() {
-    const cards = document.querySelectorAll('.lab-card .fill');
-    if (!cards.length || !('IntersectionObserver' in window)) {
-      cards.forEach(f => { f.style.width = f.dataset.w + '%'; });
+  /* ---------- 文章页：Article JSON-LD + Security Header ---------- */
+  function enhancePost() {
+    const post = document.querySelector('#post, article');
+    if (!post) return;
+
+    // Article JSON-LD
+    try {
+      const title = document.querySelector('.post-title, #post-info .post-title')?.textContent.trim() || document.title;
+      const date = document.querySelector('#post-meta time, .post-meta time')?.getAttribute('datetime') || '';
+      const jsonld = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        url: location.href,
+        datePublished: date,
+        author: { '@type': 'Person', name: 'kings-well-byte', url: 'https://github.com/kings-well-byte' },
+        publisher: { '@type': 'WebSite', name: 'Kings-Well Security Lab', url: 'https://kings-well-byte.github.io' },
+      };
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(jsonld);
+      document.head.appendChild(script);
+    } catch (e) { console.warn('[lab] jsonld:', e); }
+
+    // Security Header 徽章（从文章标签生成）
+    try {
+      const tagLinks = [...document.querySelectorAll('.post-meta__tag-list a[href*="/tags/"], #post-meta a[href*="/tags/"]')]
+        .map(a => a.textContent.trim()).filter(Boolean);
+      const catLinks = [...document.querySelectorAll('.tag_share a[href*="/categories/"], #post-meta a[href*="/categories/"]')]
+        .map(a => a.textContent.trim()).filter(Boolean);
+      if (tagLinks.length || catLinks.length) {
+        const badge = el(`<div class="lab-sec-header">
+          ${catLinks.map(c => `<span class="sh-cat">${esc(c.toUpperCase())}</span>`).join('')}
+          ${tagLinks.map(t => `<span class="sh-tag">${esc(t)}</span>`).join('')}
+        </div>`);
+        const target = document.querySelector('#post-info') || post.querySelector('.post-meta') || post.firstElementChild;
+        if (target) target.after(badge);
+      }
+    } catch (e) { console.warn('[lab] secheader:', e); }
+  }
+
+  /* ---------- 滚动进入动画 ---------- */
+  function initReveal() {
+    const mods = document.querySelectorAll('.lab-module, .lab-status-panel');
+    if (!mods.length || !('IntersectionObserver' in window)) {
+      mods.forEach(m => m.classList.add('lab-revealed'));
       return;
     }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
-        const fill = e.target;
-        const pctEl = fill.closest('.lab-card').querySelector('.card-pct');
-        const target = parseInt(fill.dataset.w, 10);
-        fill.style.width = target + '%';
-        let cur = 0;
-        const step = () => {
-          cur += Math.max(1, Math.round(target / 40));
-          if (cur >= target) { pctEl.textContent = target + '%'; return; }
-          pctEl.textContent = cur + '%';
-          setTimeout(step, 24);
-        };
-        step();
-        io.unobserve(fill);
+        e.target.classList.add('lab-revealed');
+        io.unobserve(e.target);
       });
-    }, { threshold: 0.4 });
-    cards.forEach(f => io.observe(f));
+    }, { threshold: 0.12 });
+    mods.forEach(m => io.observe(m));
   }
 
   /* ---------- 组装 ---------- */
@@ -254,31 +343,52 @@ const LAB_CONFIG = {
         const research = buildResearch();
         const projects = buildProjects();
         const ctf = buildCtf();
+        const ctfJourney = buildCtfJourney();
         const github = buildGithub();
+        const archive = buildArchive();
+        // Hero 状态面板（终端右侧）
+        const heroWrap = document.querySelector('#page-header');
+        if (heroWrap) {
+          heroWrap.classList.add('lab-hero-wrap');
+          const statusPanel = buildStatusPanel();
+          const siteInfo = document.querySelector('#site-info');
+          if (siteInfo) {
+            const heroInner = el('<div class="lab-hero-inner"></div>');
+            const termHost = el('<div class="lab-hero-term-host"></div>');
+            // 迁移已注入的终端到左右布局
+            const term = document.querySelector('.lab-hero-terminal');
+            if (term) { termHost.appendChild(term); } else { termHost.appendChild(el('<div></div>')); }
+            heroInner.appendChild(termHost);
+            heroInner.appendChild(statusPanel);
+            siteInfo.before(heroInner);
+            siteInfo.style.display = 'none';
+          }
+        }
         if (recent) {
-          recent.before(profile);
+          // 模块插入 #recent-posts 内容区内部（.layout 是 main+aside 的 flex 容器，不能横向插入）
+          recent.prepend(profile);
           profile.after(research);
           research.after(projects);
-          recent.after(ctf);
-          ctf.after(github);
-        } else if (aside) {
-          aside.before(profile);
-          profile.after(research);
-          research.after(projects);
-          research.after(projects);
-          projects.after(ctf);
-          ctf.after(github);
+          recent.append(ctf);
+          recent.append(ctfJourney);
+          recent.append(github);
+          recent.append(archive);
         } else {
           content.appendChild(profile);
           content.appendChild(research);
           content.appendChild(projects);
           content.appendChild(ctf);
+          content.appendChild(ctfJourney);
           content.appendChild(github);
+          content.appendChild(archive);
         }
       }
     } catch (e) {
       console.warn('[lab] modules:', e);
     }
-    animateBars();
+    initReveal();
+  } else {
+    enhancePost();
+    initReveal();
   }
 })();

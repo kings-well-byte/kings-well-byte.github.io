@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.css">
 <link rel="stylesheet" href="/css/lab.css">
+<link rel="stylesheet" href="/css/lab-v11.css">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
     <a href="/ctf/">CTF</a>
     <a href="/projects/">Projects</a>
     <a href="/tools/">Tools</a>
-    <a href="/categories/CTF-Writeup/">Writeups</a>
+    <a href="/knowledge/">Knowledge</a>
     <a href="/about/">About</a>
   </div>
 </nav>
@@ -37,29 +38,40 @@
     <h2 class="lab-module-title">Core Research Areas</h2>
     <div class="lab-grid">
       <div class="lab-card">
-        <div class="card-head"><span class="card-name">Web Security</span><span class="card-pct">90%</span></div>
+        <div class="card-head"><span class="card-name">Web Security</span><span class="card-level">Research</span></div>
         <div class="card-tags"><span>SQLi</span><span>XSS</span><span>RCE</span><span>SSRF</span><span>File Upload</span></div>
-        <div class="lab-bar"><div class="fill" style="width:90%"></div></div>
         <p class="proj-desc" style="margin-top:14px">Web 漏洞挖掘与利用，重点关注 PHP 源码审计与黑盒测试方法论。</p>
       </div>
       <div class="lab-card" data-accent="blue">
-        <div class="card-head"><span class="card-name">CTF</span><span class="card-pct">80%</span></div>
-        <div class="card-tags"><span>Web</span><span>Crypto</span><span>Misc</span></div>
-        <div class="lab-bar"><div class="fill" style="width:80%"></div></div>
+        <div class="card-head"><span class="card-name">CTF</span><span class="card-level">Training</span></div>
+        <div class="card-tags"><span>Web</span><span>PHP</span><span>Misc</span></div>
         <p class="proj-desc" style="margin-top:14px">CTF 竞赛方向，Web 为主，Writeup 全量沉淀于博客。</p>
       </div>
       <div class="lab-card" data-accent="purple">
-        <div class="card-head"><span class="card-name">AI Security</span><span class="card-pct">70%</span></div>
+        <div class="card-head"><span class="card-name">AI Security</span><span class="card-level">Learning</span></div>
         <div class="card-tags"><span>LLM</span><span>Prompt Injection</span><span>Model Safety</span></div>
-        <div class="lab-bar"><div class="fill" style="width:70%"></div></div>
         <p class="proj-desc" style="margin-top:14px">大模型安全研究：提示词注入、越狱、AI 应用防护。</p>
       </div>
       <div class="lab-card" data-accent="red">
-        <div class="card-head"><span class="card-name">Vulnerability Research</span><span class="card-pct">75%</span></div>
-        <div class="card-tags"><span>CVE</span><span>0day</span><span>Patch Diff</span></div>
-        <div class="lab-bar"><div class="fill" style="width:75%"></div></div>
+        <div class="card-head"><span class="card-name">Vulnerability Research</span><span class="card-level">Exploring</span></div>
+        <div class="card-tags"><span>CVE</span><span>PHP</span><span>Patch Diff</span></div>
         <p class="proj-desc" style="margin-top:14px">漏洞原理研究与复现，持续构建个人漏洞知识库。</p>
       </div>
+    </div>
+  </section>
+
+  <section class="lab-module">
+    <h2 class="lab-module-title">Research Workflow</h2>
+    <div class="lab-workflow">
+      <div class="wf-step"><div class="wf-num">01</div><div class="wf-name">Analyze</div><div class="wf-desc">目标分析与攻击面梳理</div></div>
+      <div class="wf-arrow">↓</div>
+      <div class="wf-step"><div class="wf-num">02</div><div class="wf-name">Build Environment</div><div class="wf-desc">搭建复现环境与工具链</div></div>
+      <div class="wf-arrow">↓</div>
+      <div class="wf-step"><div class="wf-num">03</div><div class="wf-name">Exploit Verification</div><div class="wf-desc">利用验证与边界测试</div></div>
+      <div class="wf-arrow">↓</div>
+      <div class="wf-step"><div class="wf-num">04</div><div class="wf-name">Security Report</div><div class="wf-desc">漏洞分析与修复方案</div></div>
+      <div class="wf-arrow">↓</div>
+      <div class="wf-step"><div class="wf-num">05</div><div class="wf-name">Knowledge Sharing</div><div class="wf-desc">Writeup 沉淀与知识输出</div></div>
     </div>
   </section>
 
