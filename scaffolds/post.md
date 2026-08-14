@@ -4,15 +4,16 @@ date: {{ date }}
 updated: {{ date }}
 categories: []
 tags: []
-description: ""
-keywords: ""
-cover: /images/cover/default.png
-top_img: /images/banner/default.png
+description: ""    # SEO 描述，50-160 字，用于首页摘要和搜索引擎
+keywords: ""       # SEO 关键词，逗号分隔
+cover:             # 文章封面图，如 /images/cover/xxx.png（无图则留空）
 comments: true
 toc: true
 mathjax: false
 mermaid: false
 ---
+
+<!-- more -->
 
 ## 题目信息
 
@@ -27,7 +28,7 @@ mermaid: false
 ## 环境搭建
 
 ```bash
-# 环境信息
+# 环境信息、Docker 命令等
 ```
 
 ## 源码分析
@@ -85,3 +86,6 @@ mermaid: false
 - 个人收获
 
 ## 参考链接
+
+- [链接1](url)
+- [链接2](url)

@@ -1,32 +1,32 @@
 ---
-title: about
-date: 2026-08-15 00:25:30
-comments: false
+title: 关于我
+date: 2026-08-15 00:00:00
+type: about
 ---
 
-# 关于我
+## 我是谁
 
-你好！我是 **kings-well-byte**，一名 Web 安全研究者。
+Web 安全研究者，CTF 选手，正在攻读网络安全方向研究生。
 
 ## 研究方向
 
-- 🔍 **Web 安全**：SQL 注入、XSS、SSRF、文件上传、反序列化等漏洞挖掘
-- ⚙️ **PHP 源码审计**：PHP 框架与 CMS 代码审计
-- 🏴 **CTF 竞赛**：Web 方向 Writeup 整理与复现
-- 🛡️ **渗透测试**：渗透流程、工具链、报告撰写
-
-## 博客内容
-
-- **CTF Writeup**：题目复现、漏洞原理分析、利用思路总结
-- **漏洞分析**：真实漏洞案例分析、修复方案
-- **学习笔记**：Web 安全知识点沉淀
+- Web 漏洞挖掘与利用
+- PHP 源码审计
+- 渗透测试
+- CTF 竞赛
 
 ## 联系方式
 
 - GitHub: [kings-well-byte](https://github.com/kings-well-byte)
 - 邮箱: 1573049538@qq.com
 
-## 友言
+## 关于本博客
 
-> 安全研究的本质是理解攻击者的思维，防御的起点是模拟攻击者的路径。
-> 保持好奇，保持怀疑，保持学习。
+本博客用于记录我的安全学习历程，包括：
+
+- CTF 比赛 Writeup
+- Web 漏洞分析文章
+- PHP 源码审计笔记
+- 安全工具使用教程
+
+所有文章遵循 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议。
