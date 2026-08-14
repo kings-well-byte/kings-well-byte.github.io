@@ -1,0 +1,158 @@
+# ============================================================
+# 导航菜单
+# ============================================================
+menu:
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
+  CTF: /categories/CTF-Writeup/ || fas fa-flag
+  关于: /about/ || fas fa-user
+
+# ============================================================
+# 首页设置
+# ============================================================
+index_img: /images/banner/index.jpg
+default_top_img: /images/banner/default.jpg
+index_site_info_top: true
+
+subtitle:
+  enable: true
+  effect: true
+  typewriter: true
+  source: false
+  sub:
+    - "Web Security Researcher"
+    - "CTF Player & Bug Hunter"
+    - "Focus on PHP Audit & Pentest"
+
+# ============================================================
+# 作者信息
+# ============================================================
+avatar: /images/avatar.png
+author: kings-well-byte
+author_description: "网络安全研究者 / CTF选手 / 漏洞挖掘爱好者"
+
+# ============================================================
+# 暗黑模式
+# ============================================================
+darkmode:
+  enable: true
+  autoChangeMode: false
+
+# ============================================================
+# 代码高亮
+# ============================================================
+highlight_theme: darker
+highlight_copy: true
+highlight_lang: true
+highlight_shrink: false
+highlight_height_limit: 200
+
+# ============================================================
+# 搜索
+# ============================================================
+local_search:
+  enable: true
+  preload: true
+  CDN:
+
+# ============================================================
+# Mermaid 图表
+# ============================================================
+mermaid:
+  enable: true
+  theme:
+    light: default
+    dark: dark
+
+# ============================================================
+# 数学公式
+# ============================================================
+katex:
+  enable: true
+  copy_tex: true
+
+# ============================================================
+# 评论系统（【用户暂停】需配置Giscus）
+# ============================================================
+comments:
+  use: Giscus
+  text: true
+  lazyload: false
+  count: false
+  card_post_count: false
+
+giscus:
+  repo: kings-well-byte/kings-well-byte.github.io
+  repo_id:
+  category: Announcements
+  category_id:
+  mapping: pathname
+  strict: 0
+  reactions_enabled: 1
+  emit_metadata: 0
+  theme: preferred_color_scheme
+  lang: zh-CN
+  input_position: bottom
+  loading: lazy
+
+# ============================================================
+# 分享按钮
+# ============================================================
+sharejs:
+  enable: true
+
+# ============================================================
+# 访客统计
+# ============================================================
+busuanzi:
+  enable: true
+
+# ============================================================
+# 侧边栏
+# ============================================================
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  card_author: true
+  card_announcement: true
+  card_recent_post: true
+  card_categories: true
+  card_tags: true
+  card_archives: true
+  card_webinfo: true
+
+# ============================================================
+# 文章卡片
+# ============================================================
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  default_cover: /images/cover/default.png
+
+# ============================================================
+# 文章元信息
+# ============================================================
+post_meta:
+  page:
+    date_type: both
+    date_format: relative
+    categories: true
+    tags: true
+    label: true
+  post:
+    date_type: both
+    date_format: relative
+    categories: true
+    tags: true
+    label: true
+
+# ============================================================
+# 字数统计
+# ============================================================
+wordcount:
+  enable: true

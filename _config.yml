@@ -1,0 +1,123 @@
+# ============================================================
+# 站点基础信息（用户需替换占位符）
+# ============================================================
+title: "Kings' Security Blog"
+subtitle: "Web Security Research & CTF Writeups"
+description: "专注于Web安全、CTF竞赛、PHP源码审计的技术博客"
+keywords: "Web安全, CTF, 渗透测试, 漏洞分析, 网络安全"
+author: kings-well-byte
+language: zh-CN
+timezone: Asia/Shanghai
+
+# ============================================================
+# URL 配置
+# ============================================================
+url: https://kings-well-byte.github.io
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+
+# ============================================================
+# 目录配置
+# ============================================================
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# ============================================================
+# 写作配置
+# ============================================================
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
+# ============================================================
+# 首页分页
+# ============================================================
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+
+# ============================================================
+# 分类与标签
+# ============================================================
+default_category: uncategorized
+category_map:
+tag_map:
+
+# ============================================================
+# 日期格式
+# ============================================================
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# ============================================================
+# 分页
+# ============================================================
+per_page: 10
+pagination_dir: page
+
+# ============================================================
+# 扩展
+# ============================================================
+theme: butterfly
+
+# ============================================================
+# 部署配置
+# ============================================================
+deploy:
+  type: git
+  repo: git@github.com:kings-well-byte/kings-well-byte.github.io.git
+  branch: gh-pages
+  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+
+# ============================================================
+# RSS 配置
+# ============================================================
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+
+# ============================================================
+# Sitemap 配置
+# ============================================================
+sitemap:
+  path: sitemap.xml
