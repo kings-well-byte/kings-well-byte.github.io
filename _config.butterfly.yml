@@ -84,9 +84,9 @@ comments:
 
 giscus:
   repo: kings-well-byte/kings-well-byte.github.io
-  repo_id:
+  repo_id: R_kgDOT4iVcg
   category: Announcements
-  category_id:
+  category_id: DIC_kwDOT4iVcs4DDYap
   mapping: pathname
   strict: 0
   reactions_enabled: 1
