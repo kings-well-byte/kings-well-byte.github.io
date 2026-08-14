@@ -15,10 +15,11 @@ nav:
 
 menu:
   首页: / || fas fa-home
-  归档: /archives/ || fas fa-archive
-  分类: /categories/ || fas fa-folder-open
-  标签: /tags/ || fas fa-tags
-  CTF: /categories/CTF-Writeup/ || fas fa-flag
+  Research: /research/ || fas fa-flask
+  CTF: /ctf/ || fas fa-flag
+  Writeups: /categories/CTF-Writeup/ || fas fa-pen-nib
+  Projects: /projects/ || fas fa-code-branch
+  Tools: /tools/ || fas fa-wrench
   关于: /about/ || fas fa-user
 
 # --------------------------------------
@@ -336,6 +337,33 @@ share:
     item: facebook,x,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # --------------------------------------
+# 主题色（Cyber 配色）
+# --------------------------------------
+theme_color:
+  enable: true
+  main: '#00FF9C'
+  paginator: '#00FF9C'
+  text_selection: '#00FF9C'
+  link_color: '#00FF9C'
+  hr_color: '#00FF9C'
+  code_foreground: '#FF4D6D'
+  code_background: '#161B22'
+  toc_color: '#00FF9C'
+  button_hover: '#00c57a'
+  blockquote_padding_color: '#00FF9C'
+  meta_color: '#8B949E'
+  scrollbar_color: '#00FF9C'
+
+# --------------------------------------
+# 字体（Inter + JetBrains Mono）
+# --------------------------------------
+font:
+  global_font_size:
+  code_font_size:
+  font_family: "Inter, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+  code_font_family: "'JetBrains Mono', Consolas, Menlo, monospace"
+
+# --------------------------------------
 # 评论（Giscus 已配置）
 # --------------------------------------
 comments:
@@ -419,12 +447,6 @@ beautify:
   field: post
   title_prefix_icon:
   title_prefix_icon_color:
-
-font:
-  global_font_size:
-  code_font_size:
-  font_family:
-  code_font_family:
 
 blog_title_font:
   font_link:
@@ -555,7 +577,12 @@ css_prefix: true
 
 inject:
   head:
+    - <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.css">
+    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.css">
+    - <link rel="stylesheet" href="/css/lab.css">
   bottom:
+    - <script src="/js/lab.js"></script>
 
 CDN:
   internal_provider: local
