@@ -181,58 +181,58 @@ figure.highlight,
   --hlscrollbar-bg: #3E3D32;
 }
 
-/* Monokai token 配色（hexo 原生 highlight 输出 hljs-* 类名） */
-.container figure.highlight .hljs-comment,
-.container figure.highlight .hljs-quote {
+/* Monokai token 配色（hexo 原生 highlight 输出无前缀类名，如 comment/built_in） */
+.container figure.highlight .comment,
+.container figure.highlight .quote {
   color: #75715E;
 }
 
-.container figure.highlight .hljs-keyword,
-.container figure.highlight .hljs-selector-tag,
-.container figure.highlight .hljs-tag,
-.container figure.highlight .hljs-name {
+.container figure.highlight .keyword,
+.container figure.highlight .selector-tag,
+.container figure.highlight .tag,
+.container figure.highlight .name {
   color: #F92672;
 }
 
-.container figure.highlight .hljs-string,
-.container figure.highlight .hljs-title,
-.container figure.highlight .hljs-section,
-.container figure.highlight .hljs-attribute,
-.container figure.highlight .hljs-literal,
-.container figure.highlight .hljs-template-tag,
-.container figure.highlight .hljs-template-variable,
-.container figure.highlight .hljs-type,
-.container figure.highlight .hljs-addition {
+.container figure.highlight .string,
+.container figure.highlight .title,
+.container figure.highlight .section,
+.container figure.highlight .attribute,
+.container figure.highlight .literal,
+.container figure.highlight .template-tag,
+.container figure.highlight .template-variable,
+.container figure.highlight .type,
+.container figure.highlight .addition {
   color: #A6E22E;
 }
 
-.container figure.highlight .hljs-number,
-.container figure.highlight .hljs-symbol,
-.container figure.highlight .hljs-bullet,
-.container figure.highlight .hljs-link,
-.container figure.highlight .hljs-meta,
-.container figure.highlight .hljs-selector-id,
-.container figure.highlight .hljs-deletion {
+.container figure.highlight .number,
+.container figure.highlight .symbol,
+.container figure.highlight .bullet,
+.container figure.highlight .link,
+.container figure.highlight .meta,
+.container figure.highlight .selector-id,
+.container figure.highlight .deletion {
   color: #AE81FF;
 }
 
-.container figure.highlight .hljs-built_in,
-.container figure.highlight .hljs-builtin-name,
-.container figure.highlight .hljs-attr {
+.container figure.highlight .built_in,
+.container figure.highlight .builtin-name,
+.container figure.highlight .attr {
   color: #66D9EF;
 }
 
-.container figure.highlight .hljs-variable,
-.container figure.highlight .hljs-params,
-.container figure.highlight .hljs-regexp {
+.container figure.highlight .variable,
+.container figure.highlight .params,
+.container figure.highlight .regexp {
   color: #FD971F;
 }
 
-.container figure.highlight .hljs-emphasis {
+.container figure.highlight .emphasis {
   font-style: italic;
 }
 
-.container figure.highlight .hljs-strong {
+.container figure.highlight .strong {
   font-weight: bold;
 }
 

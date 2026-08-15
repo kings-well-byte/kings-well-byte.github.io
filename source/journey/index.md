@@ -84,7 +84,7 @@ date: 2026-08-15
 
 **博客文章**
 - CTF Writeups：0 篇（首篇整理中）
-- Security Notes：0 篇（首篇整理中）
+- Security Notes：1 篇
 - 工具学习：0 篇
 
 **目标达成**

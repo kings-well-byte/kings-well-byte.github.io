@@ -586,13 +586,13 @@ inject:
     - <link rel="stylesheet" href="/css/custom.css">
     - <meta property="og:image" content="https://kings-well-byte.github.io/img/butterfly-icon.png">
     - <meta name="twitter:card" content="summary">
-    - <meta name="twitter:title" content="Kings-Well Security Lab">
-    - <meta name="twitter:description" content="Cyber Security Research Lab — Web Security · CTF · AI Security">
+    - <meta name="twitter:title" content="Kings-Well | Cyber Security Learning">
+    - <meta name="twitter:description" content="记录Web安全学习、CTF刷题与漏洞分析 — 网络安全学习博客">
     - <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"WebSite","name":"Kings-Well Security Lab","url":"https://kings-well-byte.github.io","description":"Cyber Security Research Lab — Web Security, CTF, AI Security, Vulnerability Research"}
+      {"@context":"https://schema.org","@type":"WebSite","name":"Kings-Well | Cyber Security Learning","url":"https://kings-well-byte.github.io","description":"记录Web安全学习、CTF刷题、漏洞分析过程与成长笔记"}
       </script>
     - <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Person","name":"kings-well-byte","url":"https://kings-well-byte.github.io","sameAs":["https://github.com/kings-well-byte"],"jobTitle":"Cyber Security Researcher in Training","knowsAbout":["Web Security","CTF","PHP Source Code Audit","AI Security","Vulnerability Research"]}
+      {"@context":"https://schema.org","@type":"Person","name":"kings-well-byte","url":"https://kings-well-byte.github.io","sameAs":["https://github.com/kings-well-byte"],"jobTitle":"Cyber Security Learner","knowsAbout":["Web Security","CTF","PHP Source Code Audit","AI Security","Vulnerability Research"]}
       </script>
   bottom:
     - <script src="/js/lab.js"></script>
