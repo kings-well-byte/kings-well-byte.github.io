@@ -1,0 +1,320 @@
+/* ============================================================
+   v1.1 新增样式：状态面板 / 时间线 / 知识树 / Workflow /
+   项目详情 / level 徽章 / 滚动动画 / 代码块 VS Code Dark
+   ============================================================ */
+
+/* ---------- Hero 左右布局 ---------- */
+.lab-hero-wrap .lab-hero-inner {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 24px 24px;
+}
+.lab-hero-term-host { flex: 1 1 560px; max-width: 640px; }
+.lab-hero-term-host .lab-hero-terminal { margin: 0; }
+
+/* ---------- SECURITY CORE STATUS 面板 ---------- */
+.lab-status-panel {
+  flex: 0 1 280px;
+  background: rgba(13, 17, 23, .65);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  backdrop-filter: blur(6px);
+  font-family: var(--lab-mono);
+  align-self: flex-start;
+  min-width: 250px;
+}
+.lab-status-panel .sp-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--lab-green);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--lab-border);
+}
+.lab-status-panel .sp-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--lab-green);
+  box-shadow: 0 0 8px var(--lab-green);
+  animation: labPulse 2s ease-in-out infinite;
+}
+.lab-status-panel .sp-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  margin: 9px 0;
+}
+.lab-status-panel .sp-row .k { color: var(--lab-dim); }
+.lab-status-panel .sp-row .v { color: var(--lab-text); }
+.lab-status-panel .sp-row .sp-online { color: var(--lab-green); }
+
+/* ---------- Profile 角色中文标注 ---------- */
+.lab-profile-cn { color: var(--lab-dim); font-size: 12px; }
+
+/* ---------- Research level 徽章 ---------- */
+.lab-card .card-level {
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--lab-green);
+  border: 1px solid rgba(0,255,156,.35);
+  padding: 2px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.lab-card[data-accent="blue"] .card-level { color: var(--lab-blue); border-color: rgba(0,191,255,.35); }
+.lab-card[data-accent="purple"] .card-level { color: var(--lab-purple); border-color: rgba(168,85,247,.35); }
+.lab-card[data-accent="red"] .card-level { color: var(--lab-red); border-color: rgba(255,77,109,.35); }
+
+/* ---------- Security Learning Path ---------- */
+.lab-path {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.lab-path-col {
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 18px 22px;
+}
+.lab-path-col .path-cat {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--lab-green);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.lab-path-col ul { list-style: none; margin: 0; padding: 0; }
+.lab-path-col li {
+  color: var(--lab-text);
+  font-size: 13.5px;
+  padding: 5px 0 5px 18px;
+  position: relative;
+}
+.lab-path-col li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--lab-dim);
+  font-family: var(--lab-mono);
+}
+
+/* ---------- 时间线 ---------- */
+.lab-timeline {
+  border-left: 2px solid rgba(0,255,156,.25);
+  margin-left: 8px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.lab-timeline .tl-node { position: relative; }
+.lab-timeline .tl-node::before {
+  content: '';
+  position: absolute;
+  left: -27.5px;
+  top: 6px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--lab-green);
+  box-shadow: 0 0 10px rgba(0,255,156,.6);
+}
+.lab-timeline .tl-year {
+  font-family: var(--lab-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--lab-green);
+  letter-spacing: 1px;
+}
+.lab-timeline .tl-title {
+  color: var(--lab-text);
+  font-size: 14px;
+  margin: 4px 0;
+}
+.lab-timeline .tl-items { margin: 4px 0 0; padding-left: 18px; }
+.lab-timeline .tl-items li { color: var(--lab-dim); font-size: 13px; margin: 3px 0; }
+
+/* ---------- Research Workflow ---------- */
+.lab-workflow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.lab-workflow .wf-step {
+  width: 100%;
+  max-width: 420px;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color .25s, transform .25s;
+}
+.lab-workflow .wf-step:hover {
+  border-color: rgba(0,255,156,.45);
+  transform: translateX(6px);
+}
+.lab-workflow .wf-num {
+  font-family: var(--lab-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--lab-green);
+  text-shadow: 0 0 14px rgba(0,255,156,.3);
+  min-width: 34px;
+}
+.lab-workflow .wf-name {
+  font-family: var(--lab-mono);
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--lab-text);
+  min-width: 170px;
+}
+.lab-workflow .wf-desc { color: var(--lab-dim); font-size: 12.5px; }
+.lab-workflow .wf-arrow { color: var(--lab-green); font-family: var(--lab-mono); }
+
+/* ---------- 项目详情模板 ---------- */
+.lab-proj-detail { display: flex; flex-direction: column; gap: 4px; }
+.lab-proj-detail .pd-row {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--lab-border);
+  font-size: 13.5px;
+}
+.lab-proj-detail .pd-row:last-child { border-bottom: none; }
+.lab-proj-detail .pd-row .k {
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--lab-green);
+  min-width: 170px;
+  padding-top: 3px;
+}
+.lab-proj-detail .pd-row .v { color: var(--lab-text); flex: 1; }
+.lab-proj-detail .pd-list { margin: 4px 0 0; padding-left: 18px; }
+.lab-proj-detail .pd-list li { color: var(--lab-dim); font-size: 13px; margin: 2px 0; }
+
+/* ---------- 知识树 ---------- */
+.lab-k-tree {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.lab-k-tree .kt-branch {
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: border-color .25s, transform .25s;
+}
+.lab-k-tree .kt-branch:hover {
+  border-color: rgba(0,255,156,.4);
+  transform: translateY(-4px);
+}
+.lab-k-tree .kt-cat {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--lab-text);
+  margin-bottom: 10px;
+}
+.lab-k-tree ul { list-style: none; margin: 0; padding: 0; }
+.lab-k-tree li { padding: 4px 0; }
+.lab-k-tree li::before { content: '├─ '; color: var(--lab-dim); font-family: var(--lab-mono); }
+.lab-k-tree a { color: var(--lab-dim); text-decoration: none; font-size: 13px; }
+.lab-k-tree a:hover { color: var(--lab-green); }
+
+/* ---------- 滚动进入动画 ---------- */
+.lab-module, .lab-status-panel {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.lab-module.lab-revealed, .lab-status-panel.lab-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 文章 Security Header 徽章 ---------- */
+.lab-sec-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 4px;
+  font-family: var(--lab-mono);
+}
+.lab-sec-header .sh-cat {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #05070D;
+  background: var(--lab-green);
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+.lab-sec-header .sh-tag {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--lab-blue);
+  border: 1px solid rgba(0,191,255,.4);
+  padding: 3px 12px;
+  border-radius: 4px;
+}
+
+/* ---------- 代码块 VS Code Dark 化 ---------- */
+#article-container pre code.highlight,
+#article-container code.highlight,
+#article-container figure.highlight,
+#article-container .highlight {
+  background: #161B22 !important;
+  border: 1px solid #1F2937;
+  border-radius: 8px;
+  color: #C9D1D9 !important;
+  font-family: var(--lab-mono) !important;
+}
+#article-container figure.highlight .gutter {
+  background: #161B22 !important;
+  border-right: 1px solid #21262D;
+  color: #484F58 !important;
+}
+#article-container figure.highlight .code {
+  background: #161B22 !important;
+}
+#article-container .highlight .line-numbers,
+#article-container figure.highlight td.code .line {
+  color: #C9D1D9 !important;
+}
+#article-container figure.highlight pre {
+  background: #161B22 !important;
+}
+/* 语言标签（caption 行） */
+#article-container figure.highlight .caption,
+#article-container .highlight figcaption {
+  background: #1F2937 !important;
+  color: var(--lab-green) !important;
+  font-family: var(--lab-mono) !important;
+  font-size: 12px;
+}
+
+/* ---------- 移动端微调 ---------- */
+@media (max-width: 768px) {
+  .lab-hero-wrap .lab-hero-inner { padding: 24px 16px 12px; }
+  .lab-status-panel { flex: 1 1 100%; min-width: 0; }
+  .lab-proj-detail .pd-row { flex-direction: column; gap: 4px; }
+  .lab-proj-detail .pd-row .k { min-width: 0; }
+  .lab-workflow .wf-step { flex-wrap: wrap; }
+}

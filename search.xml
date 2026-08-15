@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>CTFshow Web 入门 — 信息泄露专题总结</title>
+      <link href="/2026/08/15/ctfshow-web-intro-information-disclosure/"/>
+      <url>/2026/08/15/ctfshow-web-intro-information-disclosure/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h2 id="专题背景"><a href="#专题背景" class="headerlink" title="专题背景"></a>专题背景</h2><p>在完成 CTFshow Web 入门前 10 题的过程中，信息泄露类题目占据了很大比重，另外还涉及 PHP 弱类型基础（后续单独整理）。这篇总结记录我在刷题过程中对「信息泄露」这一类漏洞的完整理解。</p><p>信息泄露类题目有一个共同特点：<strong>不需要构造复杂的注入 Payload，考的是信息收集的意识和方法</strong>——攻击者通过访问本不该被外部访问的文件或路径，直接获取敏感信息。</p><h2 id="Vulnerability-Principle"><a href="#Vulnerability-Principle" class="headerlink" title="Vulnerability Principle"></a>Vulnerability Principle</h2><p>信息泄露的本质是<strong>部署边界与访问控制的缺失</strong>：</p><ol><li>开发阶段产生的文件（备份、编辑器临时文件、版本控制目录）在部署时没有被清理；</li><li>站点没有对敏感文件类型做访问控制（或目录遍历被开启）；</li><li>前端代码中直接内嵌了本应只存在于服务端的敏感信息。</li></ol><p>攻击者只需要<strong>猜测&#x2F;枚举常见文件路径</strong>（或直接查看前端源码），就能”捡到”这些信息。这类漏洞不需要绕过复杂的防御，利用成本极低。</p><h2 id="常见泄露类型与利用思路"><a href="#常见泄露类型与利用思路" class="headerlink" title="常见泄露类型与利用思路"></a>常见泄露类型与利用思路</h2><h3 id="1-前端源码泄露"><a href="#1-前端源码泄露" class="headerlink" title="1. 前端源码泄露"></a>1. 前端源码泄露</h3><p><strong>场景</strong>：敏感信息直接写在 HTML&#x2F;JS 中，如注释里的账号密码、调试接口地址。</p><p><strong>利用</strong>：浏览器 F12 开发者工具 &#x2F; <code>view-source:</code> 查看源码，直接搜索关键词（<code>password</code>、<code>flag</code>、<code>admin</code>）。</p><p><strong>防御</strong>：敏感信息一律不下发到前端；JS 混淆不能替代服务端鉴权。</p><h3 id="2-robots-txt-暴露路径"><a href="#2-robots-txt-暴露路径" class="headerlink" title="2. robots.txt 暴露路径"></a>2. robots.txt 暴露路径</h3><p><strong>场景</strong>：管理员用 <code>robots.txt</code> 声明”禁止抓取”的后台路径，反而把这些路径直接告诉攻击者。</p><p><strong>利用</strong>：访问 <code>/robots.txt</code>，逐个尝试 Disallow 中列出的路径。</p><p><strong>防御</strong>：<code>robots.txt</code> 只是君子协定，不是访问控制。敏感路径不应写入 robots.txt，真正的防护靠鉴权。</p><h3 id="3-备份文件泄露"><a href="#3-备份文件泄露" class="headerlink" title="3. 备份文件泄露"></a>3. 备份文件泄露</h3><p><strong>场景</strong>：编辑器或人工操作在 web 目录留下备份：</p><table><thead><tr><th>类型</th><th>常见命名</th></tr></thead><tbody><tr><td>手动备份</td><td><code>index.php.bak</code>、<code>index.php.old</code>、<code>www.zip</code>、<code>www.tar.gz</code></td></tr><tr><td>编辑器临时文件</td><td><code>index.php.swp</code>、<code>index.php~</code>、<code>index.php.swo</code></td></tr></tbody></table><p><strong>利用</strong>：用 <code>dirsearch</code> &#x2F; <code>ffuf</code> 携带常见后缀字典枚举，命中后直接下载源码。拿到源码即可审计出完整漏洞利用链（数据库配置、逻辑漏洞一目了然）。</p><p><strong>防御</strong>：备份文件移出 web 目录；构建&#x2F;部署流程中增加敏感文件检查。</p><h3 id="4-版本控制信息泄露"><a href="#4-版本控制信息泄露" class="headerlink" title="4. 版本控制信息泄露"></a>4. 版本控制信息泄露</h3><p><strong>场景</strong>：部署时使用 <code>git clone</code> 后未删除 <code>.git</code> 目录，或 <code>.svn</code> 目录残留在 web 目录下。</p><p><strong>利用</strong>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .git 泄露</span></span><br><span class="line">git-dumper https://target/.git/ ./out/</span><br><span class="line"><span class="comment"># 或使用 githack</span></span><br><span class="line">githack.py https://target/.git/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复源码后查看历史记录</span></span><br><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">git show &lt;commit&gt;</span><br></pre></td></tr></table></figure><p>恢复出完整仓库后，不仅拿到最新源码，还能从提交历史中找到被”删掉”的敏感内容（如开发期的硬编码配置）。</p><p><strong>防御</strong>：部署时删除 <code>.git</code> &#x2F; <code>.svn</code> 目录；用 <code>git archive</code> &#x2F; CI 产物部署替代直接 clone；web 服务器拒绝访问 <code>/.git/</code>、<code>/.svn/</code> 路径。</p><h2 id="Root-Cause"><a href="#Root-Cause" class="headerlink" title="Root Cause"></a>Root Cause</h2><p>为什么这类问题在入门题中反复出现？根因在<strong>发布流程而非代码</strong>：</p><ul><li>开发环境与生产环境不做区分，”能跑就行”式部署；</li><li>没有统一的发布清单（检查敏感文件、清理开发遗留物）；</li><li>服务器默认配置开放目录浏览 &#x2F; 未拒绝隐藏文件访问。</li></ul><h2 id="Mitigation"><a href="#Mitigation" class="headerlink" title="Mitigation"></a>Mitigation</h2><p>从开发到部署的完整防御链：</p><ol><li><strong>前端</strong>：不下发敏感信息，接口鉴权在后端完成；</li><li><strong>发布流程</strong>：构建脚本&#x2F;CI 中检查并清理 <code>*.bak</code>、<code>*.swp</code>、<code>.git</code>、<code>.svn</code> 等敏感文件；</li><li><strong>服务器</strong>：Nginx&#x2F;Apache 显式拒绝 <code>/.git</code>、<code>/.svn</code>、备份后缀、隐藏文件请求；</li><li><strong>验证</strong>：上线前用 dirsearch 等工具自查一遍，确认无敏感文件暴露。</li></ol><h2 id="Lessons-Learned"><a href="#Lessons-Learned" class="headerlink" title="Lessons Learned"></a>Lessons Learned</h2><ul><li>遇到”看起来没有输入点”的题目，先做信息收集：看源码、扫目录、试常见文件；</li><li>信息泄露往往是<strong>后续漏洞利用的跳板</strong>（拿到源码 → 审计出注入&#x2F;逻辑漏洞）；</li><li>工具链：<code>dirsearch</code>&#x2F;<code>ffuf</code>（枚举）、<code>git-dumper</code>&#x2F;<code>githack</code>（版本控制恢复）；</li><li>防御视角：漏洞的本质是流程问题，好的部署流程能消灭一类问题。</li></ul><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://ctf.show/">CTFshow 平台</a></li><li><a href="https://github.com/arthaud/git-dumper">git-dumper</a> — .git 泄露利用工具</li><li><a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/git">HackTricks - .git 泄露利用</a></li><li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10 - A05 Security Misconfiguration</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Security-Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTFshow </tag>
+            
+            <tag> 学习笔记 </tag>
+            
+            <tag> 总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

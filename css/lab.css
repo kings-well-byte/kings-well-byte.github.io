@@ -1,0 +1,597 @@
+/* ============================================================
+   Kings-Well Cyber Security Lab — 设计系统
+   Dark Cyber Research Edition
+   背景 #05070D · 卡片 #0D1117 · 主色 #00FF9C
+   ============================================================ */
+
+:root {
+  --lab-bg: #05070D;
+  --lab-surface: #0D1117;
+  --lab-border: #1F2937;
+  --lab-green: #00FF9C;
+  --lab-blue: #00BFFF;
+  --lab-red: #FF4D6D;
+  --lab-purple: #A855F7;
+  --lab-text: #C9D1D9;
+  --lab-dim: #8B949E;
+  --lab-font: 'Inter', -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --lab-mono: 'JetBrains Mono', Consolas, Menlo, monospace;
+}
+
+/* ---------- 全局底色 ---------- */
+html, body {
+  background: var(--lab-bg) !important;
+}
+body {
+  color: var(--lab-text) !important;
+  font-family: var(--lab-font) !important;
+}
+/* 网格背景（5% 透明度，非代码雨） */
+#body-wrap {
+  background-image:
+    linear-gradient(rgba(0, 255, 156, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 156, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-attachment: fixed;
+}
+
+/* ---------- 卡片统一 ---------- */
+#aside .card-widget,
+#recent-posts .recent-post-item,
+#content-inner .lab-module {
+  background: var(--lab-surface) !important;
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+#aside .card-widget:hover,
+#recent-posts .recent-post-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 156, .45);
+  box-shadow: 0 8px 32px rgba(0, 255, 156, .08), 0 0 0 1px rgba(0, 255, 156, .12);
+}
+
+/* ---------- 文章卡片 ---------- */
+#recent-posts .recent-post-item .recent-post-info .article-title {
+  color: var(--lab-text);
+}
+#recent-posts .recent-post-item .recent-post-info .article-title:hover {
+  color: var(--lab-green);
+}
+#recent-posts .recent-post-item .recent-post-info .content {
+  color: var(--lab-dim);
+}
+.recent-post-meta a,
+#recent-posts .recent-post-info .recent-post-meta {
+  color: var(--lab-dim) !important;
+}
+
+/* ---------- 导航 ---------- */
+#nav {
+  background: rgba(5, 7, 13, .82) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 156, .12);
+}
+#nav .site-name,
+#nav .nav-button {
+  color: var(--lab-text);
+}
+#nav .site-name {
+  font-family: var(--lab-mono);
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+#nav a:hover {
+  color: var(--lab-green) !important;
+}
+
+/* ---------- 页脚 ---------- */
+#footer {
+  background: var(--lab-surface) !important;
+  border-top: 1px solid var(--lab-border);
+  color: var(--lab-dim);
+}
+#footer a {
+  color: var(--lab-green);
+}
+#footer .footer_custom_text {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+}
+
+/* ---------- 滚动条 ---------- */
+::-webkit-scrollbar-thumb {
+  background: #1F2937 !important;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 156, .35) !important;
+}
+
+/* ---------- 文本选中 ---------- */
+::selection {
+  background: rgba(0, 255, 156, .25);
+  color: #fff;
+}
+
+/* ============================================================
+   Lab 模块（lab.js 注入）通用样式
+   ============================================================ */
+.lab-module {
+  margin: 24px 0;
+  padding: 22px 26px;
+}
+.lab-module-title {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--lab-green);
+  text-transform: uppercase;
+  margin: 0 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lab-module-title::before {
+  content: '>';
+  color: var(--lab-green);
+}
+.lab-module-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,255,156,.35), transparent);
+}
+
+/* ---------- Security Profile ---------- */
+.lab-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: stretch;
+}
+.lab-profile-main {
+  flex: 1 1 300px;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+.lab-profile-row {
+  display: flex;
+  margin: 8px 0;
+  font-size: 14px;
+}
+.lab-profile-row .k { color: var(--lab-dim); min-width: 76px; font-family: var(--lab-mono); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; padding-top: 3px; }
+.lab-profile-row .v { color: var(--lab-text); }
+.lab-profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--lab-green);
+  font-family: var(--lab-mono);
+  font-size: 13px;
+}
+.lab-profile-status .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--lab-green);
+  box-shadow: 0 0 8px var(--lab-green);
+  animation: labPulse 2s ease-in-out infinite;
+}
+@keyframes labPulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
+.lab-stat {
+  flex: 1 1 120px;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  transition: border-color .25s, transform .25s;
+}
+.lab-stat:hover {
+  border-color: rgba(0, 255, 156, .5);
+  transform: translateY(-3px);
+}
+.lab-stat .num {
+  font-family: var(--lab-mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--lab-green);
+  text-shadow: 0 0 18px rgba(0, 255, 156, .35);
+}
+.lab-stat .label {
+  color: var(--lab-dim);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ---------- Research Dashboard ---------- */
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.lab-card {
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.lab-card:hover {
+  border-color: rgba(0, 255, 156, .45);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 156, .07);
+}
+.lab-card .card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.lab-card .card-name {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--lab-text);
+  text-transform: uppercase;
+}
+.lab-card .card-pct {
+  font-family: var(--lab-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--lab-green);
+}
+.lab-card .card-tags {
+  color: var(--lab-dim);
+  font-size: 12px;
+  margin: 8px 0 14px;
+  min-height: 18px;
+}
+.lab-card .card-tags span { margin-right: 10px; }
+.lab-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #161B22;
+  overflow: hidden;
+}
+.lab-bar .fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #00c57a, var(--lab-green));
+  box-shadow: 0 0 10px rgba(0, 255, 156, .5);
+  width: 0;
+  transition: width 1.2s cubic-bezier(.22,.61,.36,1);
+}
+.lab-card[data-accent="blue"] .card-pct, .lab-card[data-accent="blue"] .fill { background: var(--lab-blue); box-shadow: 0 0 10px rgba(0,191,255,.5); }
+.lab-card[data-accent="purple"] .card-pct, .lab-card[data-accent="purple"] .fill { background: var(--lab-purple); box-shadow: 0 0 10px rgba(168,85,247,.5); }
+.lab-card[data-accent="red"] .card-pct, .lab-card[data-accent="red"] .fill { background: var(--lab-red); box-shadow: 0 0 10px rgba(255,77,109,.5); }
+.lab-card[data-accent="blue"] .card-pct { color: var(--lab-blue); }
+.lab-card[data-accent="purple"] .card-pct { color: var(--lab-purple); }
+.lab-card[data-accent="red"] .card-pct { color: var(--lab-red); }
+
+/* ---------- Featured Projects ---------- */
+.lab-project {
+  position: relative;
+}
+.lab-project .proj-status {
+  position: absolute;
+  top: 16px; right: 18px;
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--lab-green);
+  border: 1px solid rgba(0,255,156,.35);
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+.lab-project h3 {
+  color: var(--lab-text);
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+.lab-project .proj-desc {
+  color: var(--lab-dim);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.lab-project .proj-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.lab-project .proj-tech span {
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  color: var(--lab-green);
+  border: 1px solid rgba(0,255,156,.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+.lab-project .proj-tech span.alt {
+  color: var(--lab-blue);
+  border-color: rgba(0,191,255,.3);
+}
+.lab-project a.proj-link {
+  display: inline-block;
+  font-family: var(--lab-mono);
+  font-size: 12px;
+  color: var(--lab-green);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0,255,156,.5);
+  padding-bottom: 1px;
+}
+.lab-project a.proj-link:hover { color: #fff; }
+
+/* ---------- CTF 面板 ---------- */
+.lab-ctf-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.lab-ctf-cat {
+  flex: 1 1 140px;
+  text-align: center;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 14px;
+}
+.lab-ctf-cat .cat-name {
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--lab-dim);
+  text-transform: uppercase;
+}
+.lab-ctf-cat .cat-num {
+  font-family: var(--lab-mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--lab-green);
+  margin-top: 6px;
+}
+
+/* ---------- GitHub 区 ---------- */
+.lab-gh {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lab-gh-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,255,156,.4);
+  box-shadow: 0 0 16px rgba(0,255,156,.15);
+}
+.lab-gh .gh-name {
+  font-family: var(--lab-mono);
+  font-size: 16px;
+  color: var(--lab-text);
+}
+.lab-gh .gh-name a { color: var(--lab-green); text-decoration: none; }
+.lab-gh .gh-desc { color: var(--lab-dim); font-size: 13px; margin-top: 4px; }
+.lab-gh a.gh-btn {
+  margin-left: auto;
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  color: var(--lab-bg);
+  background: var(--lab-green);
+  border-radius: 6px;
+  padding: 8px 18px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(0,255,156,.25);
+  transition: box-shadow .25s, transform .25s;
+}
+.lab-gh a.gh-btn:hover {
+  box-shadow: 0 0 32px rgba(0,255,156,.45);
+  transform: translateY(-2px);
+}
+
+/* ---------- 终端 Hero ---------- */
+.lab-hero-terminal {
+  font-family: var(--lab-mono);
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--lab-text);
+  text-align: left;
+  background: rgba(13, 17, 23, .55);
+  border: 1px solid var(--lab-border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 18px 0 6px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), inset 0 0 60px rgba(0,255,156,.02);
+}
+.lab-hero-terminal .t-dot {
+  color: var(--lab-dim);
+}
+.lab-hero-terminal .t-prompt {
+  color: var(--lab-green);
+  font-weight: 700;
+}
+.lab-hero-terminal .t-ok {
+  color: var(--lab-green);
+}
+.lab-hero-terminal .t-line { min-height: 1.9em; }
+.lab-hero-terminal .t-cursor {
+  display: inline-block;
+  width: 8px; height: 15px;
+  background: var(--lab-green);
+  vertical-align: -2px;
+  animation: labBlink .9s steps(1) infinite;
+}
+@keyframes labBlink { 50% { opacity: 0 } }
+.lab-hero-cta {
+  display: flex;
+  gap: 14px;
+  margin: 20px 0 4px;
+  flex-wrap: wrap;
+}
+.lab-btn {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all .25s;
+  border: 1px solid transparent;
+}
+.lab-btn-primary {
+  color: #05070D;
+  background: var(--lab-green);
+  box-shadow: 0 0 22px rgba(0,255,156,.25);
+}
+.lab-btn-primary:hover { box-shadow: 0 0 36px rgba(0,255,156,.5); transform: translateY(-2px); }
+.lab-btn-ghost {
+  color: var(--lab-text);
+  border-color: var(--lab-border);
+}
+.lab-btn-ghost:hover { color: var(--lab-green); border-color: rgba(0,255,156,.5); }
+
+/* 首页 hero 文字强化 */
+#site-title {
+  font-family: var(--lab-mono) !important;
+  letter-spacing: 2px;
+}
+#site-subtitle {
+  font-family: var(--lab-mono) !important;
+}
+
+/* ============================================================
+   子页面（research/ctf/projects/tools）专用
+   ============================================================ */
+.lab-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 32px;
+  height: 64px;
+  background: rgba(5, 7, 13, .85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 255, 156, .12);
+  flex-wrap: wrap;
+}
+.lab-nav .logo {
+  font-family: var(--lab-mono);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--lab-green);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.lab-nav .logo .status {
+  color: var(--lab-green);
+  font-size: 10px;
+  vertical-align: middle;
+  margin-left: 8px;
+  border: 1px solid rgba(0,255,156,.4);
+  padding: 1px 8px;
+  border-radius: 20px;
+  animation: labPulse 2.5s ease-in-out infinite;
+}
+.lab-nav .menu {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.lab-nav .menu a {
+  color: var(--lab-dim);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.lab-nav .menu a:hover, .lab-nav .menu a.active {
+  color: var(--lab-green);
+  background: rgba(0, 255, 156, .07);
+}
+.lab-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 28px 80px;
+}
+.lab-page-head {
+  margin-bottom: 36px;
+}
+.lab-page-head .path {
+  font-family: var(--lab-mono);
+  font-size: 12px;
+  color: var(--lab-dim);
+  letter-spacing: 2px;
+}
+.lab-page-head h1 {
+  font-family: var(--lab-mono);
+  font-size: 30px;
+  color: var(--lab-text);
+  margin: 10px 0 8px;
+  letter-spacing: 1px;
+}
+.lab-page-head h1 .accent { color: var(--lab-green); }
+.lab-page-head .desc { color: var(--lab-dim); font-size: 14px; }
+.lab-foot {
+  border-top: 1px solid var(--lab-border);
+  background: var(--lab-surface);
+  padding: 28px 32px;
+  text-align: center;
+  font-family: var(--lab-mono);
+  font-size: 12.5px;
+  color: var(--lab-dim);
+}
+.lab-foot .cmd { color: var(--lab-green); }
+.lab-foot a { color: var(--lab-green); text-decoration: none; }
+
+/* 表格样式（tools 页） */
+.lab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.lab-table th, .lab-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--lab-border);
+  color: var(--lab-text);
+}
+.lab-table th {
+  font-family: var(--lab-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--lab-green);
+  text-transform: uppercase;
+}
+.lab-table td .tag {
+  font-family: var(--lab-mono);
+  font-size: 11px;
+  color: var(--lab-blue);
+  border: 1px solid rgba(0,191,255,.3);
+  border-radius: 4px;
+  padding: 1px 8px;
+  margin-right: 6px;
+}
+.lab-note {
+  font-family: var(--lab-mono);
+  font-size: 13px;
+  color: var(--lab-dim);
+  border-left: 3px solid var(--lab-green);
+  padding: 10px 16px;
+  background: rgba(0,255,156,.04);
+  margin: 20px 0;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  .lab-module { padding: 16px; }
+  .lab-hero-cta .lab-btn { flex: 1; text-align: center; }
+  .lab-nav { padding: 0 16px; gap: 12px; }
+  .lab-page { padding: 32px 18px 60px; }
+}
