@@ -1,10 +1,10 @@
 # ============================================================
 # 站点基础信息（用户需替换占位符）
 # ============================================================
-title: "Kings' Security Blog"
-subtitle: "Web Security Research & CTF Writeups"
-description: "Kings-Well Security Lab — 网络安全研究个人实验室。Web 安全、CTF 竞赛、PHP 源码审计、AI 安全方向的学习与研究记录。"
-keywords: "Cyber Security, Web Security, CTF, AI Security, Vulnerability Research, PHP Audit, 网络安全, Web安全, CTF竞赛, 渗透测试, 漏洞分析"
+title: "Kings-Well | Cyber Security Learning"
+subtitle: "Web Security · CTF · Vulnerability Analysis"
+description: "Kings-Well的个人网络安全学习博客。记录Web安全学习、CTF刷题、漏洞分析过程与成长笔记。"
+keywords: "Cyber Security, Web Security, CTF, Learning, 网络安全, Web安全, CTF学习, 渗透测试, 漏洞分析, PHP安全"
 author: kings-well-byte
 language: zh-CN
 timezone: Asia/Shanghai
@@ -49,7 +49,7 @@ relative_link: false
 future: true
 
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''

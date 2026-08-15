@@ -1,0 +1,258 @@
+/* ============================================================
+   Kings-Well Custom Styles — Cyber Minimalism
+   原则：极简、不花哨、不过度Cyber
+   ============================================================ */
+
+/* 全局字体 */
+body {
+  font-family: "Inter", -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+code, pre {
+  font-family: "JetBrains Mono", "Fira Code", Consolas, Menlo, monospace !important;
+}
+
+/* 代码块优化 */
+.highlight {
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.highlight pre {
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* 引用块 — 简洁风格 */
+blockquote {
+  border-left: 3px solid #00FF9C;
+  background: #161B22;
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  color: #C9D1D9;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+table th {
+  background: #161B22;
+  color: #00FF9C;
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid #30363D;
+}
+
+table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #21262D;
+  color: #C9D1D9;
+}
+
+table tr:hover td {
+  background: #161B22;
+}
+
+/* details/summary — Flag 隐藏 */
+details {
+  background: #161B22;
+  border: 1px solid #30363D;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+
+details summary {
+  color: #00FF9C;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+details summary:hover {
+  color: #00c57a;
+}
+
+details[open] summary {
+  margin-bottom: 10px;
+}
+
+/* 标签样式 */
+.article-tag-list a {
+  background: #21262D;
+  border: 1px solid #30363D;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #58A6FF;
+  transition: all 0.2s;
+}
+
+.article-tag-list a:hover {
+  background: #00FF9C;
+  color: #0D1117;
+  border-color: #00FF9C;
+}
+
+/* 侧边栏卡片 */
+.card-widget {
+  background: #161B22;
+  border: 1px solid #30363D;
+  border-radius: 10px;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF9C;
+}
+
+/* 选中文字 */
+::selection {
+  background: rgba(0, 255, 156, 0.3);
+  color: #E6EDF3;
+}
+
+/* 链接 */
+.article-content a {
+  color: #58A6FF;
+  border-bottom: 1px dashed #58A6FF;
+  text-decoration: none;
+}
+
+.article-content a:hover {
+  color: #00FF9C;
+  border-bottom-color: #00FF9C;
+}
+
+/* 首页文章卡片 */
+.recent-post-item {
+  background: #161B22;
+  border: 1px solid #30363D;
+  border-radius: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recent-post-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 255, 156, 0.1);
+}
+
+/* 分页器 */
+.pagination .page-number.current {
+  background: #00FF9C;
+  color: #0D1117;
+}
+
+/* ============================================================
+   Monokai 代码配色
+   Butterfly 5.7.0 内置主题仅支持 darker / pale night / light /
+   ocean / false，无 monokai，故通过 CSS 变量实现同款视觉
+   ============================================================ */
+
+figure.highlight,
+.container pre {
+  --hl-bg: #272822;
+  --hl-color: #F8F8F2;
+  --hltools-bg: #1E1F1C;
+  --hltools-color: #75715E;
+  --hlnumber-bg: #272822;
+  --hlnumber-color: rgba(248, 248, 242, .45);
+  --hlscrollbar-bg: #3E3D32;
+}
+
+/* Monokai token 配色（hexo 原生 highlight 输出 hljs-* 类名） */
+.container figure.highlight .hljs-comment,
+.container figure.highlight .hljs-quote {
+  color: #75715E;
+}
+
+.container figure.highlight .hljs-keyword,
+.container figure.highlight .hljs-selector-tag,
+.container figure.highlight .hljs-tag,
+.container figure.highlight .hljs-name {
+  color: #F92672;
+}
+
+.container figure.highlight .hljs-string,
+.container figure.highlight .hljs-title,
+.container figure.highlight .hljs-section,
+.container figure.highlight .hljs-attribute,
+.container figure.highlight .hljs-literal,
+.container figure.highlight .hljs-template-tag,
+.container figure.highlight .hljs-template-variable,
+.container figure.highlight .hljs-type,
+.container figure.highlight .hljs-addition {
+  color: #A6E22E;
+}
+
+.container figure.highlight .hljs-number,
+.container figure.highlight .hljs-symbol,
+.container figure.highlight .hljs-bullet,
+.container figure.highlight .hljs-link,
+.container figure.highlight .hljs-meta,
+.container figure.highlight .hljs-selector-id,
+.container figure.highlight .hljs-deletion {
+  color: #AE81FF;
+}
+
+.container figure.highlight .hljs-built_in,
+.container figure.highlight .hljs-builtin-name,
+.container figure.highlight .hljs-attr {
+  color: #66D9EF;
+}
+
+.container figure.highlight .hljs-variable,
+.container figure.highlight .hljs-params,
+.container figure.highlight .hljs-regexp {
+  color: #FD971F;
+}
+
+.container figure.highlight .hljs-emphasis {
+  font-style: italic;
+}
+
+.container figure.highlight .hljs-strong {
+  font-weight: bold;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .layout {
+    padding: 0 12px;
+  }
+
+  blockquote {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  table th,
+  table td {
+    padding: 6px 8px;
+  }
+}

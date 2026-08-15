@@ -15,12 +15,12 @@ nav:
 
 menu:
   首页: / || fas fa-home
-  Research: /research/ || fas fa-flask
-  CTF: /ctf/ || fas fa-flag
+  Writeups: /ctf/ || fas fa-flag
   Knowledge: /knowledge/ || fas fa-book
+  Resources: /resources/ || fas fa-compass
+  Journey: /journey/ || fas fa-route
   Projects: /projects/ || fas fa-code-branch
-  Tools: /tools/ || fas fa-wrench
-  关于: /about/ || fas fa-user
+  About: /about/ || fas fa-user
 
 # --------------------------------------
 # 代码块设置（5.7 官方键名：code_blocks）
@@ -100,9 +100,9 @@ subtitle:
   typed_option:
   source: false
   sub:
-    - "Web Security Researcher"
-    - "CTF Player & Bug Hunter"
-    - "Focus on PHP Audit & Pentest"
+    - "Learning Web Security"
+    - "CTF Player"
+    - "Focus on PHP Audit"
 
 index_layout: 3
 
@@ -117,7 +117,7 @@ toc:
   post: true
   page: false
   number: true
-  expand: false
+  expand: true
   style_simple: false
   scroll_percent: true
 
@@ -163,7 +163,7 @@ footer:
   copyright:
     enable: true
     version: true
-  custom_text: 专注于Web安全、CTF竞赛、PHP源码审计
+  custom_text: 记录网络安全学习过程，保持好奇，持续生长
 
 # --------------------------------------
 # 侧边栏（5.7 官方：嵌套结构，非扁平布尔值）
@@ -180,7 +180,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 网络安全研究者 / CTF选手 / 漏洞挖掘爱好者
+    description: 网络安全学习者 / CTF选手 / 记录成长过程
     button:
       enable: true
       icon: fab fa-github
@@ -188,7 +188,7 @@ aside:
       link: https://github.com/kings-well-byte
   card_announcement:
     enable: true
-    content: 欢迎来到我的安全博客，记录Web安全学习历程
+    content: 欢迎来到我的安全学习博客，记录从0到1的成长历程
   card_recent_post:
     enable: true
     limit: 5
@@ -250,7 +250,7 @@ readmode: true
 darkmode:
   enable: true
   button: true
-  autoChangeMode: false
+  autoChangeMode: 1
   start:
   end:
 
@@ -440,7 +440,7 @@ preloader:
   pace_css_url:
 
 enter_transitions: true
-display_mode: light
+display_mode: dark
 
 beautify:
   enable: false
@@ -583,6 +583,7 @@ inject:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.20/index.css">
     - <link rel="stylesheet" href="/css/lab.css">
     - <link rel="stylesheet" href="/css/lab-v11.css">
+    - <link rel="stylesheet" href="/css/custom.css">
     - <meta property="og:image" content="https://kings-well-byte.github.io/img/butterfly-icon.png">
     - <meta name="twitter:card" content="summary">
     - <meta name="twitter:title" content="Kings-Well Security Lab">
