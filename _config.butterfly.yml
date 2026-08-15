@@ -577,6 +577,7 @@ css_prefix: true
 
 inject:
   head:
+    - <meta name="google-site-verification" content="ndhXy6tXYmclaO5nM9HmiUUXbZVbdpM0WbEuG7Qfy-Y" />
     - <meta name="theme-color" content="#05070D">
     - <link rel="preconnect" href="https://cdn.jsdelivr.net">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.css">
