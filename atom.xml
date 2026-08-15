@@ -17,12 +17,13 @@
     </author>
     <category term="Security-Notes" scheme="https://kings-well-byte.github.io/categories/Security-Notes/"/>
     <category term="CTFshow" scheme="https://kings-well-byte.github.io/tags/CTFshow/"/>
+    <category term="Web" scheme="https://kings-well-byte.github.io/tags/Web/"/>
+    <category term="Info-Leak" scheme="https://kings-well-byte.github.io/tags/Info-Leak/"/>
     <category term="学习笔记" scheme="https://kings-well-byte.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <category term="总结" scheme="https://kings-well-byte.github.io/tags/%E6%80%BB%E7%BB%93/"/>
     <id>https://kings-well-byte.github.io/2026/08/15/ctfshow-web-intro-information-disclosure/</id>
     <link href="https://kings-well-byte.github.io/2026/08/15/ctfshow-web-intro-information-disclosure/"/>
     <published>2026-08-14T16:00:00.000Z</published>
-    <summary>CTFshow Web 入门阶段信息泄露类型题目的学习总结：前端源码、robots.txt、备份文件、版本控制泄露的原理、利用思路与防御方案。</summary>
+    <summary>CTFshow Web入门信息泄露专题学习记录</summary>
     <title>CTFshow Web 入门 — 信息泄露专题总结</title>
     <updated>2026-08-14T16:00:00.000Z</updated>
   </entry>

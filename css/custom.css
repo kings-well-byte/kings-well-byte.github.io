@@ -256,3 +256,21 @@ figure.highlight,
     padding: 6px 8px;
   }
 }
+
+/* ============================================================
+   v2.1 防御性修复
+   ============================================================ */
+
+/* 隐藏 Security Archive 中异常的未来年份（2027/2028） */
+.card-archives ul li a[href*="2027"],
+.card-archives ul li a[href*="2028"] {
+  display: none !important;
+}
+
+/* 隐藏 GitHub Activity 空白区域 */
+#github-container,
+.github-calendar,
+.github-stats,
+[data-component="github"] {
+  display: none !important;
+}
