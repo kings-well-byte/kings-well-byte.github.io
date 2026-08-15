@@ -2,9 +2,9 @@
 title: CTFshow Web 入门 — 信息泄露专题总结
 date: 2026-08-15
 updated: 2026-08-15
-tags: [CTFshow, 学习笔记, 总结]
+tags: [CTFshow, Web, Info-Leak, 学习笔记]
 categories: [Security-Notes]
-description: CTFshow Web 入门阶段信息泄露类型题目的学习总结：前端源码、robots.txt、备份文件、版本控制泄露的原理、利用思路与防御方案。
+description: "CTFshow Web入门信息泄露专题学习记录"
 keywords: CTFshow, 信息泄露, Web安全, 学习笔记
 comments: true
 toc: true

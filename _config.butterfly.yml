@@ -218,7 +218,7 @@ aside:
     type: monthly
     format: MMMM YYYY
     order: -1
-    limit: 8
+    limit: 3
     sort_order:
   card_post_series:
     enable: false
